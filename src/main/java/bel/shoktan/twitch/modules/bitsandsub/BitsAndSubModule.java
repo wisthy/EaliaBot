@@ -152,10 +152,11 @@ public class BitsAndSubModule {
     }
 
     public void setStartTime(String time){
-        start = LocalDateTime.parse(time);
+        ZonedDateTime zdt = ZonedDateTime.parse(time);
+        start = zdt.toLocalDateTime();
         endLimit = start.plus(1, ChronoUnit.DAYS);
         deadlineCommunicated = false;
-        log.info("Stream start at {}, end at the earliest at {} at the latest at {} (CEST)", start, start.plus(12, ChronoUnit.HOURS), start.plus(24, ChronoUnit.HOURS));
+        log.info("Stream start at {}, end at the earliest at {} at the latest at {}", start, start.plus(12, ChronoUnit.HOURS), start.plus(24, ChronoUnit.HOURS));
     }
 
     private Optional<LocalDateTime> deadline(){

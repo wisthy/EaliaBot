@@ -4,6 +4,9 @@ import bel.shoktan.twitch.modules.bitsandsub.SubGoal;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -60,7 +63,17 @@ class TwitchBotTest {
         wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         wisthler.enableBitAndSubs();
-        wisthler.setStartTime(LocalDateTime.now().minus(1, ChronoUnit.HOURS).toString());
+        wisthler.setStartTime(ZonedDateTime.now().minus(1, ChronoUnit.HOURS).toString());
         wisthler.setBits("42/12/1/1");
+    }
+
+    @Test
+    void timezone(){
+        LocalDateTime time = LocalDateTime.now();
+        System.out.println(time);
+        ZonedDateTime zdt = time.atZone(ZoneId.of("Europe/Brussels"));
+        System.out.println(zdt);
+        System.out.println(zdt.format(DateTimeFormatter.ofPattern("HH:mm:ss(z)")));
+
     }
 }

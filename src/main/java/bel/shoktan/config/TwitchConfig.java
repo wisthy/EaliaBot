@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
 @Configuration
@@ -53,7 +54,7 @@ public class TwitchConfig {
         malchemist.add(SubGoal.builder().subs(150).message("Play worst game on steam").build());
         malchemist.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         malchemist.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
-        malchemist.setStartTime("2021-08-15T04:00:00");*/
+        malchemist.setStartTime("2021-08-15T04:00:00+02:00");*/
 
 
         Channel wisthler = bot.get("#wisthler_badin");
@@ -70,7 +71,8 @@ public class TwitchConfig {
         wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         wisthler.enableBitAndSubs();
-        wisthler.setStartTime(LocalDateTime.now().minus(1, ChronoUnit.HOURS).toString());
+        //wisthler.setStartTime(ZonedDateTime.now().minus(1, ChronoUnit.HOURS).toString());
+        wisthler.setStartTime("2021-08-15T04:00:00+02:00");
         wisthler.setBits("42/12/1/1");
         return bot;
     }
