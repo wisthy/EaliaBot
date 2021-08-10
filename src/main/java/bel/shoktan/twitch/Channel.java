@@ -19,6 +19,7 @@ public class Channel {
     private UserManagementModule userManagementModule = new UserManagementModule();
     private BitsAndSubModule bitsAndSubModule;
     private boolean auto_so_enabled = false;
+    private boolean bitsAndSubsEnabled = false;
 
     public Channel(TwitchBot bot, String name) {
         this.name = name;
@@ -33,14 +34,16 @@ public class Channel {
 
     protected void handleChatMessage(Map<String, String> flags, String sender, String message) {
         System.out.printf("%s wrote \"%s\" on %s%n", sender, message, name);
-        bitsAndSubModule.checkDeadline();
+        if(bitsAndSubsEnabled){
+            bitsAndSubModule.checkDeadline();
+        }
         String senderId = flags.get("user-id");
         if(admin.contains(senderId) && message.startsWith("::")){
             handleAdminMessage(message);
             return;
         }
         String bits = flags.get("bits");
-        if(bits != null && !bits.equals("")){
+        if(bits != null && !bits.equals("") && bitsAndSubsEnabled){
             bitsAndSubModule.handleBits(bits, flags);
         }
         if (auto_so_enabled) {
@@ -73,7 +76,7 @@ public class Channel {
             }
             return;
         }
-        if(message.startsWith("::collected")){
+        if(message.startsWith("::collected") && bitsAndSubsEnabled){
             parent.sendMessage(name, bitsAndSubModule.display());
             return;
         }
@@ -96,19 +99,27 @@ public class Channel {
     }
 
     public void handleUserNotice(Map<String, String> values) {
-        bitsAndSubModule.handleNotice(values);
+        if(bitsAndSubsEnabled){
+            bitsAndSubModule.handleNotice(values);
+        }
     }
 
     public void addBitAndSub(String what, String action, String count) {
-        bitsAndSubModule.addBitAndSub(what, action, count);
+        if(bitsAndSubsEnabled){
+            bitsAndSubModule.addBitAndSub(what, action, count);
+        }
     }
 
     public void setBits(String count) {
-        bitsAndSubModule.setBitsANdSub(count);
+        if(bitsAndSubsEnabled){
+            bitsAndSubModule.setBitsANdSub(count);
+        }
     }
 
     public void setStartTime(String value) {
-        bitsAndSubModule.setStartTime(value);
+        if(bitsAndSubsEnabled){
+            bitsAndSubModule.setStartTime(value);
+        }
     }
 
     public void echo(String message) {
@@ -121,5 +132,9 @@ public class Channel {
 
     public boolean add(SubGoal subGoal) {
         return bitsAndSubModule.add(subGoal);
+    }
+
+    public void enableBitAndSubs() {
+        bitsAndSubsEnabled = true;
     }
 }

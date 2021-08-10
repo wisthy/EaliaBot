@@ -198,6 +198,7 @@ public class BitsAndSubModule {
         LocalDateTime end = deadline().orElse(endLimit);
         if(!deadlineCommunicated && end.isBefore(LocalDateTime.now())){
             channel.echo("the end of the stream has been reached");
+            deadlineCommunicated = true;
         }
     }
 }
