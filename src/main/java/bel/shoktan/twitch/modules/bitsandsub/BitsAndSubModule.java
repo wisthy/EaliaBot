@@ -121,6 +121,7 @@ public class BitsAndSubModule {
         }catch(NumberFormatException e){
             log.error("unable to parse", e);
         }
+        display();
     }
 
     public void addBitAndSub(String what, String action, String count) {

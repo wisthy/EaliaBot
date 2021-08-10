@@ -80,6 +80,10 @@ public class Channel {
             parent.sendMessage(name, bitsAndSubModule.display());
             return;
         }
+        if(message.startsWith("::countdown") && bitsAndSubsEnabled){
+            parent.sendMessage(name, bitsAndSubModule.countDown());
+            return;
+        }
     }
 
     private String extract_flag(String tag, String[] flags) {

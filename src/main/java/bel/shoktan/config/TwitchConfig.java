@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PreDestroy;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Configuration
 public class TwitchConfig {
@@ -68,6 +70,8 @@ public class TwitchConfig {
         wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         wisthler.enableBitAndSubs();
+        wisthler.setStartTime(LocalDateTime.now().minus(1, ChronoUnit.HOURS).toString());
+        wisthler.setBits("42/12/1/1");
         return bot;
     }
 

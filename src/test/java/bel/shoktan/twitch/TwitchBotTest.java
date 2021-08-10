@@ -3,6 +3,8 @@ package bel.shoktan.twitch;
 import bel.shoktan.twitch.modules.bitsandsub.SubGoal;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -40,5 +42,25 @@ class TwitchBotTest {
         for(String key : tmp.keySet()){
             System.out.printf("%s => %s%n", key, tmp.get(key));
         }
+    }
+
+    @Test
+    void dummy(){
+        Channel wisthler = new Channel(null, "#wisthler_badin");
+        wisthler.add(SubGoal.builder().subs(5).message("Look at old clips").build());
+        wisthler.add(SubGoal.builder().subs(10).message("Look at old art").build());
+        wisthler.add(SubGoal.builder().subs(15).message("Chat writes a tweet").build());
+        wisthler.add(SubGoal.builder().subs(20).message("Meme no laugh challenge").build());
+        wisthler.add(SubGoal.builder().subs(25).message("No aww cute challenge").build());
+        wisthler.add(SubGoal.builder().subs(50).message("Chat chooses fashion will keep for a week").build());
+        wisthler.add(SubGoal.builder().subs(75).message("Play Senua's Sacrifice").build());
+        wisthler.add(SubGoal.builder().subs(100).message("Play Getting Over It").build());
+        wisthler.add(SubGoal.builder().subs(125).message("Play Pubg W/ Challenges").build());
+        wisthler.add(SubGoal.builder().subs(150).message("Play worst game on steam").build());
+        wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
+        wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
+        wisthler.enableBitAndSubs();
+        wisthler.setStartTime(LocalDateTime.now().minus(1, ChronoUnit.HOURS).toString());
+        wisthler.setBits("42/12/1/1");
     }
 }
