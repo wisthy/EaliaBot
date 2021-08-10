@@ -12,8 +12,8 @@ import java.util.*;
 public class BitsAndSubModule {
     private final Channel channel;
     private static final Set<String> SUBS = new TreeSet<>(Arrays.asList("sub", "resub", "subgift", "anonsubgift"));
-    private LocalDateTime start = LocalDateTime.now().minus(2, ChronoUnit.DAYS);
-    private LocalDateTime endLimit = start.plus(1, ChronoUnit.DAYS);
+    private ZonedDateTime start = ZonedDateTime.now().minus(2, ChronoUnit.DAYS);
+    private ZonedDateTime endLimit = start.plus(1, ChronoUnit.DAYS);
     private Set<SubGoal> subGoals = new TreeSet<>();
     private boolean deadlineCommunicated = false;
 
@@ -153,14 +153,14 @@ public class BitsAndSubModule {
 
     public void setStartTime(String time){
         ZonedDateTime zdt = ZonedDateTime.parse(time);
-        start = zdt.toLocalDateTime();
+        start = zdt;
         endLimit = start.plus(1, ChronoUnit.DAYS);
         deadlineCommunicated = false;
         log.info("Stream start at {}, end at the earliest at {} at the latest at {}", start, start.plus(12, ChronoUnit.HOURS), start.plus(24, ChronoUnit.HOURS));
     }
 
-    private Optional<LocalDateTime> deadline(){
-        LocalDateTime end = start.plus(this.bits * 5, ChronoUnit.MINUTES);
+    private Optional<ZonedDateTime> deadline(){
+        ZonedDateTime end = start.plus(this.bits * 5, ChronoUnit.MINUTES);
         end = end.plus(this.sub1 * 10, ChronoUnit.MINUTES);
         end = end.plus(this.sub2 * 15, ChronoUnit.MINUTES);
         end = end.plus(this.sub3 * 20, ChronoUnit.MINUTES);
@@ -173,9 +173,9 @@ public class BitsAndSubModule {
     }
 
     public String countDown(){
-        Optional<LocalDateTime> endOption = deadline();
+        Optional<ZonedDateTime> endOption = deadline();
         String reached ="";
-        LocalDateTime end;
+        ZonedDateTime end;
         if(endOption.isPresent()) {
             end = endOption.get();
         }else{
@@ -189,7 +189,7 @@ public class BitsAndSubModule {
                 .substring(2)
                 .replaceAll("(\\d[HMS])(?!$)", "$1 ")
                 .toLowerCase();
-        ZonedDateTime endLocal = end.atZone(ZoneId.of("Europe/Brussels"));
+        ZonedDateTime endLocal = end.withZoneSameInstant(ZoneId.of("Europe/Brussels"));
         ZonedDateTime endUs = endLocal.withZoneSameInstant(ZoneId.of("America/Chicago"));
         String message = String.format("Stream end at %s - %s%s, so in %s", endUs.format(DateTimeFormatter.ofPattern("hh:mm:ss(z)")), endLocal.format(DateTimeFormatter.ofPattern("hh:mm:ss(z)")), reached, prettyPrint);
         log.info(String.format("%s - %s", channel.getName(), message));
@@ -197,8 +197,8 @@ public class BitsAndSubModule {
     }
 
     public void checkDeadline() {
-        LocalDateTime end = deadline().orElse(endLimit);
-        if(!deadlineCommunicated && end.isBefore(LocalDateTime.now())){
+        ZonedDateTime end = deadline().orElse(endLimit);
+        if(!deadlineCommunicated && end.isBefore(ZonedDateTime.now())){
             channel.echo("the end of the stream has been reached");
             deadlineCommunicated = true;
         }
