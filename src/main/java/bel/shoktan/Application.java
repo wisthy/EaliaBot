@@ -13,6 +13,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @SpringBootApplication
 @Slf4j
 public class Application {
@@ -34,6 +37,12 @@ public class Application {
             log.info(validate.getBody().toString());
             config.setClientId(validate.getBody().getClientId());
         };
+    }
+
+    @PostConstruct
+    public void init(){
+        // Setting Spring Boot SetTimeZone
+        TimeZone.setDefault(TimeZone.getTimeZone("CEST"));
     }
 
 }

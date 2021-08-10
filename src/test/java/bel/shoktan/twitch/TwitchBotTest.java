@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -63,8 +64,11 @@ class TwitchBotTest {
         wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         wisthler.enableBitAndSubs();
-        wisthler.setStartTime(ZonedDateTime.now().minus(1, ChronoUnit.HOURS).toString());
-        wisthler.setBits("42/12/1/1");
+        HashMap<String, String> flags = new HashMap<>();
+        flags.put("user-id", "418578073");
+        wisthler.handleChatMessage(flags, "wishtler_badin", ":countdown");
+        wisthler.setStartTime("2021-08-10T00:00:00+01:00");
+        wisthler.setBits("0/26/0/0");
     }
 
     @Test
