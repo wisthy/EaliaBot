@@ -74,7 +74,7 @@ public class TwitchConfig {
         //wisthler.setStartTime(ZonedDateTime.now().minus(1, ChronoUnit.HOURS).toString());
         ZonedDateTime start = ZonedDateTime.now().minus(12, ChronoUnit.HOURS).minus(1, ChronoUnit.MINUTES);
         wisthler.setStartTime(start.toString());
-        //wisthler.setBits("42/12/1/1");
+        //wisthler.setBits("0/0/0/0");
         return bot;
     }
 
