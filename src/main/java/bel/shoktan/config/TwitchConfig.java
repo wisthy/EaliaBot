@@ -26,6 +26,9 @@ public class TwitchConfig {
     private String OAuth;
 
 
+    private String OAuth2;
+
+
     @Bean
     public TwitchBot bot() throws IOException, IrcException {
         TwitchBot bot = new TwitchBot(Nick);
