@@ -72,8 +72,9 @@ public class TwitchConfig {
         wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         wisthler.enableBitAndSubs();
         //wisthler.setStartTime(ZonedDateTime.now().minus(1, ChronoUnit.HOURS).toString());
-        wisthler.setStartTime("2021-08-15T04:00:00+02:00");
-        wisthler.setBits("42/12/1/1");
+        ZonedDateTime start = ZonedDateTime.now().minus(12, ChronoUnit.HOURS).minus(1, ChronoUnit.MINUTES);
+        wisthler.setStartTime(start.toString());
+        //wisthler.setBits("42/12/1/1");
         return bot;
     }
 
