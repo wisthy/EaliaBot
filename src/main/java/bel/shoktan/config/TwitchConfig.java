@@ -52,6 +52,21 @@ public class TwitchConfig {
         malchemist.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         malchemist.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         malchemist.setStartTime("2021-08-15T04:00:00");
+
+
+        Channel wisthler = bot.get("#wisthler_badin");
+        wisthler.add(SubGoal.builder().subs(5).message("Look at old clips").build());
+        wisthler.add(SubGoal.builder().subs(10).message("Look at old art").build());
+        wisthler.add(SubGoal.builder().subs(15).message("Chat writes a tweet").build());
+        wisthler.add(SubGoal.builder().subs(20).message("Meme no laugh challenge").build());
+        wisthler.add(SubGoal.builder().subs(25).message("No aww cute challenge").build());
+        wisthler.add(SubGoal.builder().subs(50).message("Chat chooses fashion will keep for a week").build());
+        wisthler.add(SubGoal.builder().subs(75).message("Play Senua's Sacrifice").build());
+        wisthler.add(SubGoal.builder().subs(100).message("Play Getting Over It").build());
+        wisthler.add(SubGoal.builder().subs(125).message("Play Pubg W/ Challenges").build());
+        wisthler.add(SubGoal.builder().subs(150).message("Play worst game on steam").build());
+        wisthler.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
+        wisthler.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         return bot;
     }
 
