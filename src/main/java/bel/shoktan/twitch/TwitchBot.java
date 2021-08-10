@@ -176,6 +176,7 @@ public class TwitchBot extends PircBot {
                     where.setStartTime(value);
                 }
             }
+
         }
     }
 

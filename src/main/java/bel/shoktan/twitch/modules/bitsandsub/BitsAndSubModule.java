@@ -153,6 +153,7 @@ public class BitsAndSubModule {
     public void setStartTime(String time){
         start = LocalDateTime.parse(time);
         endLimit = start.plus(1, ChronoUnit.DAYS);
+        deadlineCommunicated = false;
         log.info("Stream start at {}, end at the earliest at {} at the latest at {} (CEST)", start, start.plus(12, ChronoUnit.HOURS), start.plus(24, ChronoUnit.HOURS));
     }
 
@@ -195,7 +196,7 @@ public class BitsAndSubModule {
 
     public void checkDeadline() {
         LocalDateTime end = deadline().orElse(endLimit);
-        if(!deadlineCommunicated && end.isAfter(LocalDateTime.now())){
+        if(!deadlineCommunicated && end.isBefore(LocalDateTime.now())){
             channel.echo("the end of the stream has been reached");
         }
     }

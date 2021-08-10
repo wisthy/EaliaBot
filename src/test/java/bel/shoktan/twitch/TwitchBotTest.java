@@ -25,6 +25,8 @@ class TwitchBotTest {
         channel.add(SubGoal.builder().subs(10).message("Look at old art").build());
         channel.addBitAndSub("t1", "add", "4");
         channel.addBitAndSub("t1", "add", "1");
+
+        //:setStart #wisthler_badin 2021-08-10T09:01:02
     }
 
     @Test
