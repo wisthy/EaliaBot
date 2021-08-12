@@ -26,6 +26,7 @@ public class Channel {
         this.parent = bot;
         bitsAndSubModule = new BitsAndSubModule(this);
         admin.add("418578073");
+        admin.add("44400034");
     }
 
     public String getName() {
@@ -121,9 +122,9 @@ public class Channel {
     }
 
     public void setStartTime(String value) {
-        if(bitsAndSubsEnabled){
+        //if(bitsAndSubsEnabled){
             bitsAndSubModule.setStartTime(value);
-        }
+        //}
     }
 
     public void echo(String message) {

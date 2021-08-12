@@ -14,6 +14,7 @@ public class TwitchBot extends PircBot {
 
 
     private final String requestedNick;
+    private final Set<String> admins = new TreeSet<>();
 
     private String realNick;
     private String realServer;
@@ -22,6 +23,8 @@ public class TwitchBot extends PircBot {
         this.requestedNick = nick;
         setName(this.requestedNick);
         setLogin(this.requestedNick);
+        admins.add("wisthler_badin");
+        admins.add("malchemisttv");
     }
 
     public void joinNewChannel(String name){
@@ -124,7 +127,7 @@ public class TwitchBot extends PircBot {
 
     private void handleWhisper(Map<String, String> flags, String userInfo, String destination, String message) {
         System.out.printf("%s whispers \"%s\" on #%s%n", userInfo, message, destination);
-        if(Objects.equals(userInfo, "wisthler_badin")){
+        if(admins.contains(userInfo)){
             if(message.startsWith(":add_so")){
                 String[] data = message.split(" ");
                 String user = data[1];

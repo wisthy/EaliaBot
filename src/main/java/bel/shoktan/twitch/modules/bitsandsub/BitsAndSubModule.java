@@ -156,7 +156,8 @@ public class BitsAndSubModule {
         start = zdt;
         endLimit = start.plus(1, ChronoUnit.DAYS);
         deadlineCommunicated = false;
-        log.info("Stream start at {}, end at the earliest at {} at the latest at {}", start, start.plus(12, ChronoUnit.HOURS), start.plus(24, ChronoUnit.HOURS));
+        ZonedDateTime startTime = start.withZoneSameInstant(ZoneId.of("Europe/Brussels"));
+        log.info("Stream start at {}, end at the earliest at {} at the latest at {}", startTime, startTime.plus(12, ChronoUnit.HOURS), startTime.plus(24, ChronoUnit.HOURS));
     }
 
     private Optional<ZonedDateTime> deadline(){
