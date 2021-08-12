@@ -161,10 +161,10 @@ public class BitsAndSubModule {
     }
 
     private Optional<ZonedDateTime> deadline(){
-        ZonedDateTime end = start.plus(this.bits * 5, ChronoUnit.MINUTES);
-        end = end.plus(this.sub1 * 10, ChronoUnit.MINUTES);
-        end = end.plus(this.sub2 * 15, ChronoUnit.MINUTES);
-        end = end.plus(this.sub3 * 20, ChronoUnit.MINUTES);
+        ZonedDateTime end = start.plus((this.bits / 100)*5, ChronoUnit.MINUTES);
+        end = end.plus(this.sub1 * 5, ChronoUnit.MINUTES);
+        end = end.plus(this.sub2 * 5, ChronoUnit.MINUTES);
+        end = end.plus(this.sub3 * 5, ChronoUnit.MINUTES);
         end = end.plus(12, ChronoUnit.HOURS);
         if(end.isAfter(endLimit)){
             return Optional.empty();

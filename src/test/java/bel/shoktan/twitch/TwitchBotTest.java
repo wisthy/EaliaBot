@@ -80,4 +80,14 @@ class TwitchBotTest {
         System.out.println(zdt.format(DateTimeFormatter.ofPattern("HH:mm:ss(z)")));
 
     }
+
+    @Test
+    void testMath(){
+        //long data = 40L;
+        for(long data = 40L; data < 140L; data++) {
+            long minutes = data / 100 * 5;
+            System.out.printf("%d bits => %d minutes %n", data, minutes);
+        }
+
+    }
 }
