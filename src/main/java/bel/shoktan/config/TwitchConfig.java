@@ -42,6 +42,7 @@ public class TwitchConfig {
         //bot.joinNewChannel("#fireballannie");
         bot.joinNewChannel("#malchemisttv");
         Channel malchemist = bot.get("#malchemisttv");
+        malchemist.enableBitAndSubs();
         malchemist.add(SubGoal.builder().subs(5).message("Look at old clips").build());
         malchemist.add(SubGoal.builder().subs(10).message("Look at old art").build());
         malchemist.add(SubGoal.builder().subs(15).message("Chat writes a tweet").build());
@@ -55,6 +56,7 @@ public class TwitchConfig {
         malchemist.add(SubGoal.builder().subs(175).message("Gamble all gold live in GW2").build());
         malchemist.add(SubGoal.builder().subs(200).message("FMA or GW2 themed tattoo").build());
         malchemist.setStartTime("2021-08-15T02:00:00+00:00");
+
 
 
         Channel wisthler = bot.get("#wisthler_badin");
